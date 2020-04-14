@@ -95,18 +95,6 @@ Now that you have completed your initial analysis, design a Flask API based on t
 * `/api/v1.0/<start>` and `/api/v1.0/<start>/<end>`
 
   * Return a JSON list of the minimum temperature, the average temperature, and the max temperature for a given start or start-end range.
-  @app.route("/api/v1.0/<start>")
-def start_trip_temp(start_date):
-	start_trip = []
-
-	results_min = session.query(func.min(Measurements.tobs)).filter(Measurements.date == start_date).all()
-	results_max = session.query(func.max(Measurements.tobs)).filter(Measurements.date == start_date).all()
-	results_avg = session.query(func.avg(Measurements.tobs)).filter(Measurements.date == start_date).all()
-
-	start_trip = list(np.ravel(results_min,results_max, results_avg))
-
-	return jsonify(start_trip)
-
 
   * When given the start only, calculate `TMIN`, `TAVG`, and `TMAX` for all dates greater than and equal to the start date.
 
